@@ -1,0 +1,199 @@
+/* ---- Kontainer Detail Restoran ---- */
+#restaurant-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.loading-element {
+  margin-bottom: 20px;
+}
+
+/* ---- Detail Restoran ---- */
+#restaurant-detail {
+  width: 100%;
+  border-radius: 8px;
+}
+
+#detail-restaurant-image {
+  position: relative;
+  width: 100%;
+}
+
+#detail-restaurant-image img {
+  width: 100%;
+  filter: brightness(0.4);
+  border-radius: 8px;
+}
+
+#detail-restaurant-image h2 {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  color: white;
+  z-index: 1;
+  font-size: 9vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---- Kontainer Restoran ---- */
+.restaurant-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.restaurant-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---- Daftar Menu ---- */
+.menu-list {
+  background-color: #f9f9f9;
+  list-style-type: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.menu-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ---- Tombol Favorit ---- */
+#favorite-button {
+  padding: 5px;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 4rem;
+  right: 1rem;
+  box-shadow: var(--shadow-bar);
+  z-index: 99;
+}
+
+#favorite-button svg {
+  width: 35px;
+  height: 35px;
+}
+
+/* ---- Formulir Ulasan ---- */
+#review-form {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+#review-form:hover {
+  transform: translateY(-3px);
+}
+
+/* ---- Judul Formulir Ulasan ---- */
+#review-form h3 {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+/* ---- Input dan Textarea Formulir ---- */
+#review-form input[type='text'],
+#review-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: 'Arial', sans-serif;
+}
+
+#review-form input[type='text']:focus,
+#review-form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* ---- Tombol Formulir ---- */
+#review-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  font-family: 'Arial', sans-serif;
+}
+
+#review-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#review-form button:active {
+  background-color: #004494;
+}
+
+/* ---- Daftar Ulasan Pelanggan ---- */
+#customer-reviews-list {
+  margin: 20px 0;
+}
+
+/* ---- Judul Daftar Ulasan ---- */
+#customer-reviews-list h3 {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+/* ---- Daftar Ulasan ---- */
+#customer-reviews-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* ---- Item Ulasan ---- */
+#customer-reviews-list ul li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+#customer-reviews-list ul li:hover {
+  background-color: #f1f1f1;
+}
+
+/* ---- Teks dalam Item Ulasan ---- */
+#customer-reviews-list ul li p {
+  margin: 0;
+  font-size: 1em;
+  color: #555;
+}
+
+/* ---- Nama Pengguna dalam Ulasan ---- */
+#customer-reviews-list ul li strong {
+  color: #007bff;
+}

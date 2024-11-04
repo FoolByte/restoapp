@@ -1,0 +1,75 @@
+@media (min-width: 1200px) {
+  #drawer-button {
+    display: none;
+  }
+
+  .nav #drawer {
+    position: static;
+    display: flex;
+    margin: auto 1rem;
+
+    width: auto;
+    border: none;
+    box-shadow: none;
+
+    padding-top: 0;
+  }
+
+  .nav #drawer a {
+    display: inline;
+    padding: 1rem 1rem;
+    text-decoration: none;
+    color: var(--main-text-color);
+    align-items: center;
+    border-bottom: none;
+  }
+
+  .nav #drawer a:hover {
+    color: red;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+  }
+
+  #main-content {
+    padding-bottom: 0;
+  }
+
+  main #restaurant-list {
+    border-radius: 0;
+    position: static;
+    top: 0;
+    padding-bottom: 0;
+    border: none;
+  }
+
+  .restaurant-item {
+    max-width: 300px;
+  }
+
+  main #jumbotron {
+    position: relative;
+    top: -1rem;
+    z-index: 1;
+  }
+  #hero {
+    position: static;
+    min-width: 1000px;
+    margin: 0;
+  }
+
+  #review-form {
+    padding: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  #favorite-button {
+    bottom: 2rem;
+    right: 2rem;
+  }
+
+  footer {
+    position: static;
+    z-index: 9999;
+  }
+}
