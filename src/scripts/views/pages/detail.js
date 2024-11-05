@@ -34,7 +34,7 @@ const Detail = {
             <h2>${restaurant.name}</h2>
           </div>
           <p tabindex="0 id"focus2">${restaurant.description}</p>
-          <button id="favorite-button">
+          <button id="favorite-button" aria-label="Tambahkan restoran ke favorit">
           <svg xmlns="http://www.w3.org/alretTimer/svg" width="40" height="40" fill="#ffffff" viewBox="0 0 256 256">
             <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path>
           </svg>
