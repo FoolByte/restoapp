@@ -1,17 +1,22 @@
 import Utils from '../../utils/utils.js';
-import CONFIG from '../../globals/config.js';
+import { createDetailTemplate } from '../templates/template-creator.js';
 import UrlParser from '../../routes/url-parser.js';
 import RestaurantApi from '../../data/restaurant-api.js';
 import FavoriteRestaurantIdb from '../../data/restaurant-idb.js';
+import LikeButtonInitiator from '../../utils/like-presenter.js';
 
 import swal from 'sweetalert';
+
+const url = UrlParser.parseActiveUrlWithoutCombiner();
 
 const Detail = {
   async render() {
     return `
       <section id="restaurant-detail-container">
+        <a href="#/detail/${url.id}" class="skip-to-content" tabindex="1">Skip to Content</a>
         <loading-element></loading-element>
         <div id="restaurant-detail"></div>
+        <div id="favoriteButton"></div>
       </section>
     `;
   },
@@ -20,56 +25,21 @@ const Detail = {
     try {
       const alretTimer = 1500;
       const url = UrlParser.parseActiveUrlWithoutCombiner();
-      const restaurantId = url.id;
-      console.log(restaurantId);
+      const restaurant = await RestaurantApi.detail(url.id);
+      const restaurantDetailContainer = document.querySelector('#restaurant-detail');
+      restaurantDetailContainer.innerHTML = createDetailTemplate(restaurant);
 
-      const restaurant = await RestaurantApi.detail(restaurantId);
-      const restaurantDetailContainer = document.getElementById('restaurant-detail');
-
-      restaurantDetailContainer.innerHTML = `
-       <a href="#/detail/${restaurant.id}" class="skip-to-content" tabindex="1">Skip to Content</a>
-        <div class="restaurant-container">
-          <div id="detail-restaurant-image">
-            <img src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}">
-            <h2>${restaurant.name}</h2>
-          </div>
-          <p tabindex="0 id"focus2">${restaurant.description}</p>
-          <button id="favorite-button" aria-label="Tambahkan restoran ke favorit">
-          <svg xmlns="http://www.w3.org/alretTimer/svg" width="40" height="40" fill="#ffffff" viewBox="0 0 256 256">
-            <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path>
-          </svg>
-         </button>
-          <div class="restaurant-info">
-            <p><strong>Alamat:</strong> ${restaurant.address}</p>
-            <p><strong>Kota:</strong> ${restaurant.city}</p>
-            <p><strong>Rating:</strong> ${restaurant.rating}</p>
-          </div>
-          <div>
-            <h3 tabindex="0">Menu Makanan</h3>
-            <ul class="menu-list">
-              ${restaurant.menus.foods.map((food) => `<li tabindex="0">${food.name}</li>`).join('')}
-            </ul>
-          </div>
-          <div>
-            <h3 tabindex="0">Menu Minuman</h3>
-            <ul class="menu-list">
-              ${restaurant.menus.drinks.map((drink) => `<li tabindex="0">${drink.name}</li>`).join('')}
-            </ul>
-          </div>
-          <div id="review-form">
-            <div id="customer-reviews-list">
-            <h3 tabindex="0">Customer Reviews</h3>
-            <ul>
-              ${restaurant.customerReviews.map((review) => `<li tabindex="0"><p><strong>${review.name}</strong> (${review.date}): ${review.review}</p></li>`).join('')}
-            </ul>
-          </div>
-            <h3 tabindex="0">Add Review</h3>
-            <input type="text" id="review-name" placeholder="Nama Anda" required />
-            <textarea id="review-text" placeholder="Tulis review..." required></textarea>
-            <button id="submit-review-button">Kirim Review</button>
-          </div>
-        </div>
-      `;
+      LikeButtonInitiator.init({
+        likeButtonContainer: document.querySelector('#favoriteButton'),
+        favoriteRestaurants: FavoriteRestaurantIdb,
+        restaurant: {
+          id: restaurant.id,
+          name: restaurant.name,
+          city: restaurant.city,
+          rating: restaurant.rating,
+          pictureId: restaurant.pictureId,
+        },
+      });
 
       Utils.hideLoading();
 
@@ -84,7 +54,7 @@ const Detail = {
       });
       submitReviewButton.addEventListener('click', async () => {
         const reviewData = {
-          id: restaurantId,
+          id: restaurant.id,
           name: reviewNameInput.value,
           review: reviewTextInput.value,
         };
@@ -120,44 +90,6 @@ const Detail = {
           console.error('Error:', error);
         }
       });
-
-      const favoriteButton = document.getElementById('favorite-button');
-      let isFavorited = (await FavoriteRestaurantIdb.getRestaurant(restaurant.id)) !== undefined;
-      updateFavoriteButtonIcon(isFavorited);
-
-      favoriteButton.addEventListener('click', async () => {
-        isFavorited = !isFavorited;
-
-        if (isFavorited) {
-          await FavoriteRestaurantIdb.putRestaurant(restaurant);
-          console.log('added to favorite');
-          swal({
-            title: 'Ditambahkan ke Favorit',
-            icon: 'success',
-            button: false,
-            timer: alretTimer,
-          });
-        } else {
-          await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id);
-          console.log('deleted from favorite');
-          swal({
-            title: 'Dihapus dari Favorit',
-            icon: 'success',
-            button: false,
-            timer: alretTimer,
-          });
-        }
-
-        updateFavoriteButtonIcon(isFavorited);
-      });
-
-      function updateFavoriteButtonIcon(isFavorited) {
-        favoriteButton.setAttribute('aria-label', isFavorited ? 'Hapus dari favorit' : 'Tambahkan restoran ke favorit');
-
-        favoriteButton.innerHTML = isFavorited
-          ? '<svg xmlns="http://www.w3.org/alretTimer/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M240,98a57.63,57.63,0,0,1-17,41L133.7,229.62a8,8,0,0,1-11.4,0L33,139a58,58,0,0,1,82-82.1L128,69.05l13.09-12.19A58,58,0,0,1,240,98Z"></path></svg>'
-          : '<svg xmlns="http://www.w3.org/alretTimer/svg" width="40" height="40" fill="#ffffff" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path></svg>';
-      }
     } catch (error) {
       console.error('Gagal memuat data detail restoran:', error);
       const restaurantDetailContainer = document.getElementById('restaurant-detail');
