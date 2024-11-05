@@ -12,6 +12,10 @@ const LikeButtonInitiator = {
   async _renderButton() {
     const { id } = this._restaurant;
 
+    if (id === undefined) {
+      return;
+    }
+
     if (await this._isRerestaurantExist(id)) {
       this._renderUnlike();
     } else {
