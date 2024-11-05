@@ -68,7 +68,7 @@
 }
 
 /* ---- Tombol Favorit ---- */
-#favorite-button {
+.favorite-button {
   padding: 5px;
   border: none;
   border-radius: 100%;
@@ -84,7 +84,7 @@
   z-index: 99;
 }
 
-#favorite-button svg {
+.favorite-button svg {
   width: 35px;
   height: 35px;
 }

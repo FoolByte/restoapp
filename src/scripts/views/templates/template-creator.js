@@ -18,9 +18,49 @@ const createHomeTemplate = () => `
    </section>
 `;
 
+const createDetailTemplate = (restaurant) => `
+
+   <div class="restaurant-container">
+      <div id="detail-restaurant-image">
+      <img src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}">
+      <h2>${restaurant.name}</h2>
+      </div>
+      <p tabindex="0 id"focus2">${restaurant.description}</p>
+      <div class="restaurant-info">
+      <p><strong>Alamat:</strong> ${restaurant.address}</p>
+      <p><strong>Kota:</strong> ${restaurant.city}</p>
+      <p><strong>Rating:</strong> ${restaurant.rating}</p>
+      </div>
+      <div>
+      <h3 tabindex="0">Menu Makanan</h3>
+      <ul class="menu-list">
+         ${restaurant.menus.foods.map((food) => `<li tabindex="0">${food.name}</li>`).join('')}
+      </ul>
+      </div>
+      <div>
+      <h3 tabindex="0">Menu Minuman</h3>
+      <ul class="menu-list">
+         ${restaurant.menus.drinks.map((drink) => `<li tabindex="0">${drink.name}</li>`).join('')}
+      </ul>
+      </div>
+      <div id="review-form">
+      <div id="customer-reviews-list">
+      <h3 tabindex="0">Customer Reviews</h3>
+      <ul>
+         ${restaurant.customerReviews.map((review) => `<li tabindex="0"><p><strong>${review.name}</strong> (${review.date}): ${review.review}</p></li>`).join('')}
+      </ul>
+      </div>
+      <h3 tabindex="0">Add Review</h3>
+      <input type="text" id="review-name" placeholder="Nama Anda" required />
+      <textarea id="review-text" placeholder="Tulis review..." required></textarea>
+      <button id="submit-review-button">Kirim Review</button>
+      </div>
+   </div>
+`;
+
 const createLikeButtonTemplate = () => `
    <button id="like" aria-label="Tambahkan restoran ke favorit" class="favorite-button">
-      <svg xmlns="http://www.w3.org/alretTimer/svg" width="40" height="40" fill="#ffffff" viewBox="0 0 256 256">
+      <svg xmlns="http://www.w3.org/alretTimer/svg" width="42" height="32" fill="#ffffff" viewBox="0 0 256 256">
       <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path>
       </svg>
    </button>   
@@ -32,4 +72,4 @@ const createUnlikeButtonTemplate = () => `
    </button>   
 `;
 
-export { createRestaurantItemTemplate, createHomeTemplate, createLikeButtonTemplate, createUnlikeButtonTemplate };
+export { createRestaurantItemTemplate, createHomeTemplate, createDetailTemplate, createLikeButtonTemplate, createUnlikeButtonTemplate };
