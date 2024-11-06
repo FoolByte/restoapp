@@ -46,7 +46,7 @@ const createDetailTemplate = (restaurant) => `
       <div id="review-form">
       <div id="customer-reviews-list">
       <h3 tabindex="0">Customer Reviews</h3>
-      <ul>
+      <ul id="customer-reviews">
          ${restaurant.customerReviews.map((review) => `<li tabindex="0"><p><strong>${review.name}</strong> (${review.date}): ${review.review}</p></li>`).join('')}
       </ul>
       </div>

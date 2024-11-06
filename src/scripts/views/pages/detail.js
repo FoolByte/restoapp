@@ -54,10 +54,11 @@ const Detail = {
       });
       submitReviewButton.addEventListener('click', async () => {
         const reviewData = {
-          id: restaurant.id,
+          id: url.id,
           name: reviewNameInput.value,
           review: reviewTextInput.value,
         };
+        console.log(reviewData);
         Utils.clearInputFields(reviewNameInput, reviewTextInput);
         try {
           const response = await fetch('https://restaurant-api.dicoding.dev/review', {

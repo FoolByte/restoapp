@@ -15,7 +15,7 @@ const Favorite = {
       const restaurantsContainer = document.getElementById('restaurants');
 
       if (restaurants.length === 0) {
-        restaurantsContainer.innerHTML = '<p>Tidak ada restoran yang difavoritkan.</p>';
+        restaurantsContainer.innerHTML = '<p class="restaurant-item__not__found">Tidak ada restoran yang difavoritkan.</p>';
         return;
       }
 
