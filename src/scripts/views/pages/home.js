@@ -1,18 +1,25 @@
 import RestaurantApi from '../../data/restaurant-api.js';
 import { createRestaurantItemTemplate } from '../templates/template-creator.js';
 import Utils from '../../utils/utils.js';
+
 const Home = {
   async render() {
     return `
       <a href="#focus" class="skip-to-content" tabindex="1">Skip to Content</a>
       <section id="jumbotron">
         <div class="hero">
-          <img
-            src="./images/heros/hero-image_2.jpg"
-            alt="Hero image berisi foto makanan di meja makan"
-            tabindex="0"
-            id="hero"
-          />
+          <picture>
+            <source
+              media="(max-width: 600px)"
+              srcset="./images/resized/hero-image_2-small.webp"
+            />
+            <img
+              src="./images/resized/hero-image_2-large.jpg"
+              alt="Hero image berisi foto makanan di meja makan"
+              tabindex="0"
+              id="hero"
+            />
+          </picture>
         </div>
       </section>
 
@@ -26,11 +33,9 @@ const Home = {
 
   async afterRender() {
     try {
-      // Ambil daftar restoran dari IndexedDB
       const restaurants = await RestaurantApi.restaurantList();
       const restaurantsContainer = document.getElementById('restaurants');
 
-      // Cek jika tidak ada restoran yang tersedia
       if (restaurants.length === 0) {
         restaurantsContainer.innerHTML = '<p>Tidak ada restoran yang tersedia.</p>';
         return;
@@ -38,7 +43,6 @@ const Home = {
 
       restaurantsContainer.innerHTML = restaurants.map(createRestaurantItemTemplate).join('');
 
-      // Tambahkan event listener untuk setiap restoran
       const restaurantItems = document.querySelectorAll('.restaurant-item');
       restaurantItems.forEach((item) => {
         item.setAttribute('aria-label', 'klik utnuk detail restoran');
