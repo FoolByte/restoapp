@@ -9,11 +9,11 @@ const Home = {
         <div class="hero">
           <picture>
             <source
-            media="(max-width: 300px)"
-            srcset="./images/hero-image_2-small.wpg"
+            media="(max-width: 600px)"
+            srcset="./images/hero-image_2-small.webp"
             />
             <img
-            src="./images/hero-image_2-large.jpg"
+            src="./images/hero-image_2-large.webp"
             alt="Hero image berisi foto makanan di meja makan"
             tabindex="0"
             id="hero"
