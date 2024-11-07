@@ -7,12 +7,18 @@ const Home = {
       <a href="#focus" class="skip-to-content" tabindex="1">Skip to Content</a>
       <section id="jumbotron">
         <div class="hero">
-          <img
-            src="./images/heros/hero-image_2.jpg"
+          <picture>
+            <source
+            media="(max-width: 300px)"
+            srcset="./images/hero-image_2-small.wpg"
+            />
+            <img
+            src="./images/hero-image_2-large.jpg"
             alt="Hero image berisi foto makanan di meja makan"
             tabindex="0"
             id="hero"
-          />
+            />
+          </picture>
         </div>
       </section>
 
