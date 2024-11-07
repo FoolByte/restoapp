@@ -21,7 +21,6 @@ const Home = {
           </picture>
         </div>
       </section>
-
       <section id="restaurant-list">
         <h1 id="focus">Explore Restaurant</h1>
         <loading-element></loading-element>
