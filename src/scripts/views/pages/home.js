@@ -10,19 +10,18 @@ const Home = {
         <div class="hero">
           <picture>
             <source
-              media="(max-width: 600px)"
-              srcset="./images/resized/hero-image_2-small.webp"
+            media="(max-width: 600px)"
+            srcset="./images/hero-image_2-small.webp"
             />
             <img
-              src="./images/resized/hero-image_2-large.jpg"
-              alt="Hero image berisi foto makanan di meja makan"
-              tabindex="0"
-              id="hero"
+            src="./images/hero-image_2-large.webp"
+            alt="Hero image berisi foto makanan di meja makan"
+            tabindex="0"
+            id="hero"
             />
           </picture>
         </div>
       </section>
-
       <section id="restaurant-list">
         <h1 id="focus">Explore Restaurant</h1>
         <loading-element></loading-element>
