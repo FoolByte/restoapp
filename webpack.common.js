@@ -47,10 +47,10 @@ module.exports = {
           },
         },
         {
-          from: path.resolve(__dirname, 'src/public/'),
+          from: path.resolve(__dirname, 'dist/'),
           to: path.resolve(__dirname, 'docs/'),
           globOptions: {
-            ignore: ['**/heros/**'],
+            dot: true,
           },
         },
       ],
