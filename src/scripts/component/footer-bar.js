@@ -7,7 +7,7 @@ class FooterBar extends HTMLElement {
   render() {
     const footerDiv = document.createElement('footer');
     footerDiv.innerHTML = `
-      <div class="roboto-bold">Copyright © 2024 - by khairul</div>
+      <div class="roboto-bold">Copyright © 2025 - by khairul</div>
     `;
     this.appendChild(footerDiv);
   }
